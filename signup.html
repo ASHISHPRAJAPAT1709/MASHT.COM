@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jewelry Website Sign-Up</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #f9f4ef, #ffffff);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .signup-container {
+            background: white;
+            border: 2px solid #f7b898;
+            border-radius: 15px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .signup-container h1 {
+            font-size: 24px;
+            color:#fab592;
+            margin-bottom: 10px;
+        }
+
+        .signup-container p {
+            color: #777;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .signup-container input {
+            width: 90%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        .signup-container button {
+            width: 100%;
+            background: #f4b392;
+            color: #fff;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .signup-container button:hover {
+            background: #fbaa82;
+        }
+
+        .signup-container .social-buttons {
+            margin: 20px 0;
+        }
+
+        .signup-container .social-buttons button {
+            background: #fff;
+            border: 2px solid #f7b898;
+            color: #f7b898;
+            padding: 10px;
+            margin: 5px;
+            width: 45%;
+            font-size: 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .signup-container .social-buttons button:hover {
+            background: #f7b898;
+            color: white;
+        }
+
+        .signup-container .terms {
+            font-size: 12px;
+            color: #555;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-container">
+        <h1>Join Us</h1>
+        <p>Create an account and explore our exquisite jewelry collection.</p>
+        <form>
+            <input type="text" placeholder="Full Name" required>
+            <input type="email" placeholder="Email Address" required>
+            <input type="password" placeholder="Password" required>
+            <button type="submit">Sign Up</button>
+        </form>
+        <div class="social-buttons">
+            <button>Sign Up with Facebook</button>
+            <button>Sign Up with Google</button>
+        </div>
+        <p class="terms">
+            By signing up, you agree to our <a href="#" style="color: #f7b898; text-decoration: none;">Terms of Service</a> and <a href="#" style="color: #f7b898; text-decoration: none;">Privacy Policy</a>.
+        </p>
+    </div>
+</body>
+</html>

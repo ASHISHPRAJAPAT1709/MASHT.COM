@@ -1,0 +1,123 @@
+body {
+    font-family: 'Lucida Handwriting', cursive;
+    margin: 0;
+    padding: 0;
+}
+
+/* Special Heading Styles */
+.special-heading {
+    font-style: italic;
+    font-weight: bold;
+}
+
+/* Navbar Styles */
+nav {
+    background-color: white;
+    border-bottom: 1px solid #d1d5db; /* Light gray */
+}
+
+/* Button Hover Effects */
+button {
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #cbd5e1; /* Light gray on hover */
+}
+
+/* Link Hover Effects */
+a:hover {
+    text-decoration: underline;
+    color: #b91c1c; /* Darker red on hover */
+}
+
+/* Header Slider Styles */
+header {
+    position: relative;
+    height: 24rem; /* 96 units in Tailwind */
+    background-size: cover;
+}
+
+/* Category and Best Sellers Slider Styles */
+.flex {
+    display: flex;
+    overflow-x: auto;
+}
+
+.flex > div {
+    flex: 0 0 auto; /* Prevent flex items from shrinking */
+}
+
+/* Collection Item Styles */
+.collection-item {
+    width: 80; /* 40 units in Tailwind */
+    height: 12rem; /* 48 units in Tailwind */
+    background-color: #f9f9f9; /* Light background */
+    border-radius: 0.75rem; /* Rounded corners */
+    display: none;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+} 
+.bgImage {
+    position: relative;
+    display: inline-block;
+  }
+
+  .bgImage img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .bgImage button:hover {
+    background-color: #0056b3;
+    }
+.bgImage button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+/* Store Finder Section */
+.relative {
+   position: relative;
+   display: inline-block;  */
+}
+
+.absolute {
+    position: absolute;
+}
+
+.bg-black {
+    background-color: rgba(0, 0, 0, 0.5); /* Black with opacity */
+}
+
+/* Footer Styles */
+footer {
+    background-color: #f3f4f6; /* Light gray */
+    border-top: 1px solid #d1d5db; /* Light gray */
+    padding: 2rem 1.5rem; /* Padding for footer */
+}
+
+footer h3, footer h4 {
+    color: #b91c1c; /* Rose color */
+}
+
+footer p, footer a {
+    color: #4b5563; /* Gray color */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .grid {
+        grid-template-columns: 1fr; /* Single column on small screens */
+    }
+}

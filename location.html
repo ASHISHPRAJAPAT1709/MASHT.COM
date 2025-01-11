@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MASHT Jewellery - Locate Now</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        body {
+            
+                font-family: 'Lucida Handwriting', cursive;
+            
+            .special-heading {
+                font-style: italic;
+                font-weight: bold;
+            }
+            background-color: #f8e8e8;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        header {
+            background-color: #f4c2c2;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        header img {
+            height: 50px;
+        }
+        .header-title {
+            color: #b76e79;
+            margin: 0;
+        }
+        h1, p {
+            margin: 5px 0;
+        }
+        select {
+            padding: 10px;
+            margin: 20px;
+            border: 1px solid #b76e79;
+            border-radius: 5px;
+        }
+        #map {
+            height: 400px;
+            width: 100%;
+            margin: 20px 0;
+        }
+        .store-list {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: left;
+            padding-bottom: 60px; /* Add padding to avoid overlap */
+        }
+        .store {
+            background-color: #fff;
+            padding: 15px;
+            margin: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .store h2 {
+            margin: 0;
+            color: #b76e79;
+        }
+        footer {
+            background-color: #f4c2c2;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            text-align: center;
+        }
+        footer a {
+            color: #b76e79;
+            text-decoration: none;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="./IMAGES/MASHT.png" alt="MASHT Logo">
+    <h2 class="header-title">MASHT</h2>
+    <h1 class="header-title">Locate a Store</h1>
+</header>
+
+<select id="citySelect" onchange="updateStores()">
+    <option value="">Select a city</option>
+    <option value="Indore">Indore</option>
+    <option value="Ujjain">Ujjain</option>
+    <option value="Bhopal">Bhopal</option>
+</select>
+
+<div id="map"></div>
+
+<div class="store-list" id="storeList">
+    <!-- Store information will be dynamically inserted here -->
+</div>
+
+<footer>
+    <span>@2025 MASHT all rights reserved</span>
+    <a href="index.html">Home</a>
+</footer>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script>
+    const stores = {
+        Indore: [
+            { name: "Punjab Jewellers", address: "MG Road, Indore", contact: "111-222-3333", link: "https://punjabjewellers.com", lat: 22.7196, lng: 75.8577 },
+            { name: "D.P. Jewellers", address: "Rajwada, Indore", contact: "444-555-6666", link: "https://dpjewellers.com", lat: 22.7190, lng: 75.8575 },
+            { name: "Tanishq Jewellery", address: "Vijay Nagar, Indore", contact: "777-888-9999", link: "https://tanishq.co.in", lat: 22.7533, lng: 75.8936 },
+            { name: "Kalyan Jewellers", address: "Sapna Sangeeta, Indore", contact: "000-111-2222", link: "https://kalyanjewellers.net", lat: 22.7177, lng: 75.8310 },
+            { name: "Malabar Gold & Diamonds", address: "Palasia, Indore", contact: "333-444-5555", link: "https://malabargoldanddiamonds.com", lat: 22.7281, lng: 75.8742 }
+        ],
+        Ujjain: [
+            { name: "D.P. Jewellers", address: "Freeganj, Ujjain", contact: "111-222-3333", link: "https://dpjewellers.com", lat: 23.1793, lng: 75.7849 },
+            { name: "Tanishq Jewellery", address: "Tower Chowk, Ujjain", contact: "444-555-6666", link: "https://tanishq.co.in", lat: 23.1828, lng: 75.7769 },
+            { name: "Shri Ram Jewellers", address: "Subhash Marg, Ujjain", contact: "777-888-9999", link: "https://shriraamjewellers.com", lat: 23.1824, lng: 75.7688 },
+            { name: "Mahamaya Jewellers", address: "Gopal Mandir, Ujjain", contact: "000-111-2222", link: "https://mahamayajewellers.com", lat: 23.1825, lng: 75.7810 },
+            { name: "Jewellers Swarn Mandir", address: "Kanthal, Ujjain", contact: "333-444-5555", link: "https://swarnmandir.com", lat: 23.1822, lng: 75.7820 }
+        ],
+        Bhopal: [
+            { name: "BlueStone", address: "Malviya Nagar, Bhopal", contact: "111-222-3333", link: "https://bluestone.com", lat: 23.2334, lng: 77.4324 },
+            { name: "Kalyan Jewellers", address: "10 Number Road, Bhopal", contact: "444-555-6666", link: "https://kalyanjewellers.net", lat: 23.2247, lng: 77.4323 },
+            { name: "PC Jeweller", address: "New Market, Bhopal", contact: "777-888-9999", link: "https://pcjeweller.com", lat: 23.2403, lng: 77.3998 },
+            { name: "Tanishq Jewellery", address: "MP Nagar, Bhopal", contact: "000-111-2222", link: "https://tanishq.co.in", lat: 23.2330, lng: 77.4344 },
+            { name: "Malabar Gold & Diamonds", address: "Arera Colony, Bhopal", contact: "333-444-5555", link: "https://malabargoldanddiamonds.com", lat: 23.2355, lng: 77.4050 }
+        ]
+    };
+
+    let map;
+
+    function initMap() {
+        map = L.map('map').setView([23.2599, 77.4126], 6);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 18,
+            attribution: '© OpenStreetMap'
+        }).addTo(map);
+    }
+
+    function updateStores() {
+        const city = document.getElementById('citySelect').value;
+        const storeList = document.getElementById('storeList');
+        storeList.innerHTML = '';
+
+        if (stores[city]) {
+            const cityStores = stores[city];
+            const { lat, lng } = cityStores[0];
+            map.setView([lat, lng], 13);
+
+            cityStores.forEach(store => {
+                const storeDiv = document.createElement('div');
+                storeDiv.className = 'store';
+                storeDiv.innerHTML = `<h2>${store.name}</h2>
+                                      <p>${store.address}</p>
+                                      <p>Contact: ${store.contact}</p>
+                                      <a href="${store.link}" target="_blank">Visit Website</a>`;
+                storeList.appendChild(storeDiv);
+
+                L.marker([store.lat, store.lng]).addTo(map)
+                    .bindPopup(`<b>${store.name}</b><br>${store.address}`)
+                    .openPopup();
+            });
+        } else {
+            alert("Please select a valid city.");
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        initMap();
+    });
+</script>
+
+</body>
+</html>

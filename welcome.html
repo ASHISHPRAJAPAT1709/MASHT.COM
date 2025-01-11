@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to MASHT</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Great+Vibes&display=swap" rel="stylesheet">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'Great Vibes', cursive; /* Default cursive font */
+        }
+
+        /* Background image with scrolling effect */
+        .background {
+            background: url(./IMAGES/welcome.jpg) no-repeat center center fixed;
+            background-size: cover;
+            height: 100%;
+            position: relative;
+        }
+
+        .background::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6); /* Dark overlay */
+        }
+
+        /* Welcome content */
+        .welcome-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: #fff;
+        }
+
+        .welcome-content h1 {
+            font-family: 'Caveat', serif; /* Font for the main heading */
+            font-size: 60px;
+            margin: 0;
+            font-weight: bold;
+            color: #f4b392 ; 
+        }
+
+        .welcome-content p {
+            font-size: 22px;
+            margin: 20px 0;
+            line-height: 1.5;
+        }
+
+        .welcome-content button {
+            background: #f4b392;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 20px;
+            font-size: 18px;
+            font-family: cursive;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: background0.3s ease-in-out;
+        }
+
+        .welcome-content button:hover {
+            background: #f6cbb5;
+        }
+
+        .welcome-content .sub-text {
+            margin-top: 10px;
+            font-size: 18px;
+            color: #f1f1f1;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .welcome-content h1 {
+                font-size: 48px;
+            }
+
+            .welcome-content p {
+                font-size: 100px;
+            }
+
+            .welcome-content button {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background">
+        <div class="welcome-content">
+            <h1>Welcome to MASHT</h1>
+            <p>
+                Discover timeless elegance and unparalleled craftsmanship with our exclusive jewelry collection.
+            </p>
+            <button onclick="window.location.href='MASHT.JEWELLERY.COM'"><a href="index.html">Explore Now</a></button>
+            <p class="sub-text">Your journey into luxury begins here.</p>
+        </div>
+    </div>
+</body>
+</html>
