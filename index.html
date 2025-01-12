@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MASHT</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
+    <link rel="stylesheet" href="himan.css"> <!-- Link to your CSS file -->
     <style>
 
     .image-container img {
@@ -47,72 +47,205 @@
     </nav>
 
     <!-- Header Slider -->
-    <header class="relative h-96" style="background-image: url('IMAGES/slider1.jpg'); background-size: cover; background-position: center;">
-        <div class="absolute inset-0 flex items-center justify-center bg-rose-200 bg-opacity-50">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Image Slider</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <div class="min-h-screen">
+            <header class="slider-container">
+                <div class="slides">
+                    <div class="slide">
+                        <div class="slide-content">
+                           <img src="./IMAGES/slider1.jpg" alt="slide" style="width: 100%; height: 90%; object-fit: cover;">                                 
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <div class="slide-content">
+                          <img src="./IMAGES/slide2.jpg" alt="slide" style="width: 100%; height: %; object-fit: cover;">
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <div class="slide-content">
+                            <img src="./IMAGES/welcome.jpg" alt="slide" style="width: 100%; height: 90%; object-fit: cover;">
+                        </div>
+                    </div>
+                </div>
+    
+                <button class="nav-button prev" aria-label="Previous slide">❮</button>
+                <button class="nav-button next" aria-label="Next slide">❯</button>
+    
+                <div class="dots">
+                    <button type="." class="dot active">.</button>
+                    <button type="." class="dot">.</button>
+                    <button class="dot"></button>
+                </div>
+            </header>
         </div>
-    </header>
+    
+        <script>
+            const slides = document.querySelectorAll('.slide');
+            const dots = document.querySelectorAll('.dot');
+            const prevButton = document.querySelector('.prev');
+            const nextButton = document.querySelector('.next');
+            let currentSlide = 0;
+    
+            function showSlide(index) {
+                slides.forEach(slide => slide.classList.remove('active'));
+                dots.forEach(dot => dot.classList.remove('active'));
+                slides[index].classList.add('active');
+                dots[index].classList.add('active');
+            }
+    
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % slides.length;
+                showSlide(currentSlide);
+            }
+    
+            function prevSlide() {
+                currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+                showSlide(currentSlide);
+            }
+    
+            // Auto advance slides
+            setInterval(nextSlide, 3000);
+    
+            // Event listeners
+            prevButton.addEventListener('click', prevSlide);
+            nextButton.addEventListener('click', nextSlide);
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    currentSlide = index;
+                    showSlide(currentSlide);
+                });
+            });
+    
+            // Show first slide initially
+            showSlide(0);
+        </script>
+    </body>
+    </html>
 
     <!-- Category Slider -->
     <section class="collection-item">
-
-        <h2 class="text-3xl text-rose-600 special-heading mb-4">CATEGORY</h2>
-        <div class="flex space-x-4 overflow-x-auto">
-            <div class="w-60 h-50 bg-rose-100 rounded-xl flex items-center justify-center">
-                <img src="IMAGES/rings1.png" alt="Rings" class="w-full h-full object-cover">
-                <button class="mt-2 px-4 py-1 bg-rose-600 text-white rounded">Shop Now</button>
+        <h2 class="special-heading">CATEGORY</h2>
+        
+        <div class="slider-container">
+            <div class="slider-wrapper">
+                <div class="slider-track">
+                    <div class="category-card">
+                        <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&q=80" alt="Rings">
+                        <button class="shop-button">Shop Now</button>
+                    </div>
+                    
+                    <div class="category-card">
+                        <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&q=80" alt="Earrings">
+                        <button class="shop-button">Shop Now</button>
+                    </div>
+                    
+                    <div class="category-card">
+                        <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&q=80" alt="Necklaces">
+                        <button class="shop-button">Shop Now</button>
+                    </div>
+                    
+                    <div class="category-card">
+                        <img src="https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?auto=format&fit=crop&q=80" alt="Bracelets">
+                        <button class="shop-button">Shop Now</button>
+                    </div>
+                    
+                    <div class="category-card">
+                        <img src="./IMAGES/coins.jpg" alt="Coins">
+                        <button class="shop-button">Shop Now</button>
+                    </div>
+                    
+                    <div class="category-card">
+                        <img src="https://images.unsplash.com/photo-1573408301185-9146fe634ad0?auto=format&fit=crop&q=80" alt="Chains">
+                        <button class="shop-button">Shop Now</button>
+                    </div>
+                    <div class="category-card">
+                        <img src="./IMAGES/coins1.jpg" alt="Coins">
+                        <button class="shop-button">Shop Now</button>
+                    </div>
+                </div>
             </div>
-            <div class="w-60 h-50 bg-rose-100 rounded-xl flex items-center justify-center">
-                <img src="IMAGES/ear1.jpg" alt="Earrings" class="w-full h-full object-cover">
-                <button class="mt-2 px-4 py-1 bg-rose-600 text-white rounded">Shop Now</button>
-            </div>
-            <div class="w-60 h-96 bg-rose-100 rounded-xl flex items-center justify-center">
-                <img src="IMAGES/chains.jpg" alt="Necklaces" class="w-full h-full object-cover">
-                <button class="mt-2 px-4 py-1 bg-rose-600 text-white rounded">Shop Now</button>
-            </div>
-            <div class="w-60 h-96 bg-rose-100 rounded-xl flex items-center justify-center">
-                <img src="IMAGES/bracelet 1.png" alt="Bracelets" class="w-full h-full object-cover">
-                <button class="mt-2 px-4 py-1 bg-rose-600 text-white rounded">Shop Now</button>
-            </div>
-            <div class="w-60 h-96 bg-rose-100 rounded-xl flex items-center justify-center">
-                <img src="IMAGES/coins.jpg" alt="Coins" class="w-full h-full object-cover">
-                <button class="mt-2 px-4 pyI-1 bg-rose-600 text-white rounded">Shop Now</button>
-            </div>
-            <div class="w-60 h-96 bg-rose-100 rounded-xl flex items-center justify-center">
-                <img src="IMAGES/coins1.jpg" alt="Chains" class="w-full h-full object-cover">
-                <button class="mt-2 px-4 py-1 bg-rose-600 text-white rounded">Shop Now</button>
-            </div>
-            <div class="w-60 h-96 bg-rose-100 rounded-xl flex items-center justify-center">
-                <img src="IMAGES/bracelet 5.png" alt="Diamonds" class="w-full h-full object-cover">
-                <button class="mt-2 px-4 py-1 bg-rose-600 text-white rounded">Shop Now</button>
-            </div>
-            <div class="w-60 h-96 bg-rose-100 rounded-xl flex items-center justify-center">
-                <img src="IMAGES/bracelet 3.png" alt="Gold" class="w-full h-full object-cover">
-                <button class="mt-2 px-4 py-1 bg-rose-600 text-white rounded">Shop Now</button>
-            </div>
-            <div class="w-60 h-96 bg-rose-100 rounded-xl flex items-center justify-center">
-                <img src="IMAGES/bracelet 2.png"Silver" class="w-full h-full object-cover">
-                <button class="mt-2 px-4 py-1 bg-rose-600 text-white rounded">Shop Now</button>
-            </div>
+            
+            
+            <button class="nav-button prev">❮</button>
+            <button class="nav-button next">❯</button>
         </div>
-
     </section>
 
     <!-- Best Sellers Slider --> 
-    <section class="py-8 px-6">
-        <h2 class="text-3xl text-rose-600 special-heading mb-4">OUR BEST SELLERS</h2>
-        <div class="relative flex items-center justify-center overflow-hidden">
-            <div class="flex space-x-4">
-                <div class="w-80 h-64 bg-rose-100 rounded-xl flex items-center justify-center"></div> 
-                <div class="w-80 h-64 bg-rose-100 rounded-xl flex items-center justify-center"></div>
-                <div class="w-80 h-64 bg-rose-100 rounded-xl flex items-center justify-center"><img src="./IMAGES/4.png"></div>
-                <div class="w-80 h-64 bg-rose-100 rounded-xl flex items-center justify-center"><img src="./IMAGES/BOPIS.png"></div>
-                <div class="w-80 h-64 bg-rose-100 rounded-xl flex items-center justify-center"><img src="./IMAGES/image1.jpg"></div>
-                <div class="w-80 h-64 bg-rose-100 rounded-xl flex items-center justify-center"><img src="./IMAGES/3.png"></div>
-                <div class="w-80 h-64 bg-rose-100 rounded-xl flex items-center justify-center"></div>
-                <div class="w-80 h-64 bg-rose-100 rounded-xl flex items-center justify-center"></div>
+    <section class="best-sellers">
+        <h2 class="special-heading">OUR BEST SELLERS</h2>
+        
+        <div class="slider-container">
+            <div class="slider-wrapper">
+                <div class="slider-track">
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1603561591411-07134e71a2a9?auto=format&fit=crop&q=80" alt="Jewelry 1">
+                        <div class="product-info">
+                            <h3>Elegant Ring</h3>
+                            <p>16% OFF</p>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&q=80" alt="Jewelry 2">
+                        <div class="product-info">
+                            <h3>Diamond Necklace</h3>
+                            <p>5% OFF</p>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&q=80" alt="Jewelry 3">
+                        <div class="product-info">
+                            <h3>Pearl Earrings</h3>
+                            <p>17% OFF</p>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?auto=format&fit=crop&q=80" alt="Jewelry 4">
+                        <div class="product-info">
+                            <h3>Gold Bracelet</h3>
+                            <p>9% OFF</p>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&q=80" alt="Jewelry 5">
+                        <div class="product-info">
+                            <h3>Diamond Set</h3>
+                            <p>4% OFF</p>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <img src="./IMAGES/bracelet 1.png" alt="Jewelry 6">
+                        <div class="product-info">
+                            <h3>Bracelet</h3>
+                            <p>3% OFF</p>
+                        </div>
+                    </div>
+                    
+                    <div class="product-card">
+                        <img src="./IMAGES/chains.jpg" alt="Jewelry 7">
+                        <div class="product-info">
+                            <h3>Diamond Set</h3>
+                            <p>20% OFF</p>
+                        </div>
+                    </div>
+                </div>
             </div>
+            
+            <button class="nav-button prev" aria-label="Previous">❮</button>
+            <button class="nav-button next" aria-label="Next">❯</button>
         </div>
     </section>
+
 
     <!-- Collections Section -->
     <!-- <section class="py-8 px-6"> -->
@@ -259,8 +392,8 @@
                 <h4 class="text-lg text-rose-600">Contact Us</h4>
                 <p class="text-gray-700">Email: contact@masht.com</p>
                 <p class="text-gray-700">Phone: +1 234 567 890</p>
-                <button class="mt-4 px-6 py-2 bg-pink-500 text-white rounded-full text-lg">
-                    <li><a href="seller.html" class="text-gray-700 hover:underline">Sellers Dashboard</a></li>
+                <button  class="mt-4 px-6 py-2 bg-pink-500 text-white rounded-full text-lg">
+                    <a href="seller.html" class="text-gray-700 hover:underline">Sellers Dashboard</a>
                 </button>
             </div>
         </div>
