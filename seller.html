@@ -166,23 +166,35 @@
             <!-- Login Section -->
             <section class="login-section">
                 <h2>Seller Login</h2>
-                <form action="#" method="POST" onsubmit="handleLogin(event)">
+                <form action="sellers.php" method="POST" onsubmit="return validateForm(event)">
                     <label for="username">Username:</label>
                     <input type="text" id="username" name="username" required>
-
+            
                     <label for="password">Password:</label>
                     <input type="password" id="password" name="password" required>
-
+            
                     <label for="location">Location:</label>
                     <input type="text" id="location" name="location" required>
-
+            
                     <label for="aadhar">Aadhar Number:</label>
-                    <input type="text" id="aadhar" name="aadhar" required pattern="d{12}" title="Please enter a valid 12-digit Aadhar number.">
-
-                    <button type="submit">login</button>
+                    <input type="text" id="aadhar" name="aadhar" required pattern="\d{12}" title="Please enter a valid 12-digit Aadhar number.">
+            
+                    <button type="submit">Login</button>
                 </form>
             </section>
-
+            
+            <script>
+            function validateForm(event) {
+                // Example validation logic (optional)
+                const aadhar = document.getElementById('aadhar').value;
+                if (!/^\d{12}$/.test(aadhar)) {
+                    alert("Please enter a valid 12-digit Aadhar number.");
+                    return false; // Prevent form submission
+                }
+                return true; // Allow form submission
+            }
+            </script>
+            
             <!-- Profile Section -->
             <section class="profile-section" id="profile-section">
                 <h2>Welcome, Seller!</h2>
