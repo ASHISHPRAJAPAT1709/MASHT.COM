@@ -203,7 +203,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-<script>
   const slider = document.getElementById('offerSlider');
   let isDown = false;
   let startX, scrollLeft;
@@ -232,4 +231,3 @@ document.addEventListener('DOMContentLoaded', function() {
     const walk = (x - startX) * 2;
     slider.scrollLeft = scrollLeft - walk;
   });
-</script>
